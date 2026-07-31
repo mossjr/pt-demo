@@ -1,0 +1,47 @@
+Deal ID,Client Name,Sales Rep,Deal Stage,Deal Value,Currency,Date Created,Date Entered Current Stage,Expected Close Date,Last Activity Date,Deal Status
+D-1001,Ironclad Roofing,Aroha Ngata,Qualified,8697,NZD,5/31/26,6/10/26,8/19/26,6/12/26,Open
+D-1002,Blue Gum Electrical,Ben Walsh,Proposal Sent,25163,USD,6/4/26,6/15/26,7/28/26,6/17/26,Open
+D-1003,Southern Cross Plumbing,Jordan Lee,Discovery,25298,NZD,7/1/26,7/14/26,8/12/26,7/16/26,Open
+D-1004,Kauri Build Co,,Discovery,25541,NZD,5/19/26,5/23/26,8/7/26,5/23/26,Open
+D-1005,Tasman Landscaping,Ben Walsh,Discovery,14438,USD,5/4/26,7/7/26,8/20/26,7/21/26,Open
+D-1006,Outback Concrete,Aroha Ngata,Negotiation,21965,NZD,4/19/26,6/12/26,7/30/26,6/12/26,Open
+D-1007,Harbourview Joinery,Sarah Chen,Closed Won,44660,AUD,5/14/26,5/23/26,5/20/26,5/23/26,Won
+D-1008,Red Dirt Excavations,Priya Patel,Proposol Sent,38005,NZD,5/28/26,7/17/26,7/26/26,7/17/26,Open
+D-1009,Fern Ridge Builders,Aroha Ngata,Discovery,6665,NZD,5/28/26,7/2/26,8/5/26,7/20/26,Open
+D-1010,Whanau Construction,Mike Thompson,Closed Won,16826,AUD,5/11/26,5/20/26,5/20/26,5/20/26,Won
+D-1011,Coastal Tiling,Ben Walsh,Closed Won,12363,AUD,4/29/26,5/10/26,5/7/26,5/10/26,Won
+D-1012,Golden Bay HVAC,Priya Patel,Qualified,-5000,NZD,4/24/26,7/1/26,8/10/26,7/18/26,Open
+D-1013,Ridge Line Carpentry,Mike Thompson,Closed Lost,10185,AUD,4/29/26,5/5/26,5/5/26,5/5/26,Lost
+D-1014,Emerald Fencing,Mike Thompson,Negotiation,37676,AUD,5/8/26,7/7/26,8/14/26,7/18/26,Open
+D-1015,Northshore Painters,Priya Patel,Closed Lost,38190,NZD,6/30/26,7/15/26,7/15/26,7/15/26,Lost
+D-1016,Silverline Plastering,Priya Patel,Closed Won,,NZD,5/25/26,6/5/26,6/4/26,6/5/26,Won
+D-1017,Rata Roofing,Sarah Chen,Closed Lost,36271,AUD,5/29/26,6/11/26,6/10/26,6/11/26,Lost
+D-1018,Bluff Point Builders,Sarah Chen,Closed Won,13016,AUD,4/28/26,5/12/26,5/11/26,5/12/26,Won
+D-1019,Anchor Bay Electrical,Priya Patel,Closed Won,35021,NZD,4/25/26,4/30/26,4/28/26,4/30/26,Won
+D-1020,Highland Landscaping,Sarah Chen,Qualified,8613,,5/23/26,6/1/26,7/21/26,6/3/26,Open
+D-1021,Waratah Plumbing,Aroha Ngata,Proposal Sent,39031,NZD,4/24/26,7/15/26,8/15/26,7/16/26,Open
+D-1022,Sunburst Solar,Mike Thompson,Discovery,23428,AUD,5/8/26,7/2/26,7/28/26,7/16/26,Open
+D-1023,Ti Kouka Construction,Jordan Lee,Closed Lost,10930,NZD,5/6/26,5/19/26,5/16/26,5/19/26,Lost
+D-1024,Ochre Earthworks,Mike Thompson,Discovery,7652,AUD,4/17/26,7/1/26,7/16/26,7/20/26,Open
+D-1025,Merino Fit-Out,Aroha Ngata,Negotiation,21250,NZD,6/27/26,7/17/26,7/31/26,7/17/26,Open
+D-1003,Pounamu Paving,Aroha Ngata,Proposal Sent,15478,NZD,4/19/26,7/12/26,8/11/26,7/18/26,Open
+D-1027,Cape Reinga Roofing,Sarah Chen,Qualified,6972,AUD,5/8/26,7/18/26,7/22/26,7/16/26,Open
+D-1028,Yarra Valley Builders,Jordan Lee,Closed Won,15465,NZD,6/18/26,6/26/26,6/25/26,6/26/26,Won
+D-1029,Moana Marine Fitout,Ben Walsh,Proposal Sent,9416,AUD,5/27/26,7/17/26,8/20/26,7/18/26,Open
+D-1030,Ember Electrical,Sarah Chen,Negotiation,34826,AUD,6/30/26,7/12/26,8/11/26,7/20/26,Open
+D-1031,Grey Stone Masonry,Jordan Lee,Negotiation,32819,NZD,6/24/26,5/25/26,7/11/26,5/30/26,Open
+D-1032,Native Bush Landscaping,Priya Patel,Proposal Sent,22445,NZD,4/21/26,7/4/26,7/28/26,7/20/26,Open
+D-1033,Copper Creek Plumbing,Mike Thompson,Closed Lost,6746,AUD,4/23/26,4/28/26,4/26/26,4/28/26,Lost
+D-1034,Sundowner Solar,Sarah Chen,Negotiation,7490,AUD,4/25/26,5/15/26,7/27/26,5/15/26,Open
+D-1035,Longview Joinery,Ben Walsh,Qualified,43591,AUD,5/11/26,6/1/26,7/18/26,6/3/26,Open
+D-1036,Bay of Plenty Builders,Sarah Chen,Proposal Sent,18642,AUD,4/26/26,2026/13/45,8/5/26,7/20/26,Open
+D-1037,Ochre Ridge Fencing,Priya Patel,Proposal Sent,43708,NZD,5/24/26,7/17/26,8/14/26,7/21/26,Open
+D-1038,Karaka Carpentry,Ben Walsh,Closed Lost,11680,AUD,6/4/26,6/17/26,6/15/26,6/17/26,Lost
+D-1039,Southern Lights Electrical,Priya Patel,Closed Won,31716,NZD,5/15/26,5/24/26,5/23/26,5/24/26,Won
+D-1040,Tussock Tiling,Ben Walsh,Closed Won,9788,AUD,4/25/26,4/30/26,4/28/26,4/30/26,Won
+D-1041,Ferngully Fitout,Mike Thompson,Discovery,25471,AUD,4/22/26,5/29/26,7/29/26,5/31/26,Open
+D-1042,Ironbark Roofing,Mike Thompson,Negotiation,21132,AUD,4/28/26,7/18/26,8/12/26,7/21/26,Open
+D-1043,Estuary Excavations,Sarah Chen,Qualified,39759,AUD,5/29/26,5/19/26,8/12/26,5/21/26,Open
+D-1044,Whakatane Builders,Sarah Chen,Qualified,12705,AUD,6/12/26,7/8/26,8/20/26,7/17/26,Open
+D-1045,Redgum Landscaping,Jordan Lee,Qualified,9736,NZD,6/26/26,7/13/26,7/31/26,7/16/26,Open
+D-1046,Aotea Plumbing,Priya Patel,Closed Won,18514,NZD,5/10/26,5/24/26,5/23/26,5/24/26,Won

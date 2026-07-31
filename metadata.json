@@ -1,0 +1,6 @@
+{
+  "name": "Profitable Tradie",
+  "description": "Modular web dashboard hub with Sales Pipeline Analysis for Profitable Tradie.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
