@@ -55,6 +55,16 @@ export const RepPerformanceWidget: React.FC<RepPerformanceWidgetProps> = ({
     return computeMonthlyRepMatrix(deals, targets, fxConfig, currency);
   }, [deals, targets, fxConfig, currency]);
 
+  const activeMonthKey = repData[0]?.monthKey;
+  const activeMonthLabel = useMemo(() => {
+    if (!activeMonthKey) return '';
+    const [yearStr, monthStr] = activeMonthKey.split('-');
+    const date = new Date(Number(yearStr), Number(monthStr) - 1, 1);
+    return isNaN(date.getTime())
+      ? activeMonthKey
+      : date.toLocaleString('default', { month: 'long', year: 'numeric' });
+  }, [activeMonthKey]);
+
   // Compute aggregate totals for the executive summary cards
   const totalTarget = repData.reduce((acc, r) => acc + (r.targetConverted || r.target), 0);
   const totalWon = repData.reduce((acc, r) => acc + (r.wonConverted ?? r.totalWonValue), 0);
@@ -124,7 +134,7 @@ export const RepPerformanceWidget: React.FC<RepPerformanceWidgetProps> = ({
             {formatCurrency(totalTarget, currency)}
           </p>
           <span className="text-[10px] text-slate-400 block">
-            Combined monthly quota ({repData.length} reps)
+            Combined monthly quota ({repData.length} reps){activeMonthLabel ? ` • ${activeMonthLabel}` : ''}
           </span>
         </div>
 

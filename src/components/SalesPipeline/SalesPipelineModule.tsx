@@ -197,8 +197,15 @@ export const SalesPipelineModule: React.FC<SalesPipelineModuleProps> = ({ onBack
   }, [filteredDealsList]);
 
   const repPerformance = useMemo(() => {
-    return computeRepPerformance(filteredDealsList, targets, fxConfig, activeCurrency);
-  }, [filteredDealsList, targets, fxConfig, activeCurrency]);
+    return computeRepPerformance(
+      filteredDealsList,
+      targets,
+      fxConfig,
+      activeCurrency,
+      filters.selectedMonth,
+      filters.dateField || 'expectedCloseDate'
+    );
+  }, [filteredDealsList, targets, fxConfig, activeCurrency, filters.selectedMonth, filters.dateField]);
 
   const stageSummaries = useMemo(() => {
     return computeStageSummaries(filteredDealsList);

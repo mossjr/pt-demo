@@ -38,13 +38,7 @@ export const LoginScreen: React.FC<LoginScreenProps> = ({ onSuccess }) => {
         setError(data.message || 'Incorrect password. Please try again.');
       }
     } catch {
-      // Fallback verification if fetch fails
-      if (password.trim() === 'Temp123') {
-        sessionStorage.setItem('pt_auth_token', 'authenticated');
-        onSuccess();
-      } else {
-        setError('Incorrect password. Please try again.');
-      }
+      setError('Authentication request failed. Please try again.');
     } finally {
       setLoading(false);
     }

@@ -14,9 +14,13 @@ async function startServer() {
   // Password verification endpoint
   app.post("/api/auth/verify", (req, res) => {
     const { password } = req.body;
-    const expectedPassword = process.env.APP_PASSWORD || "Temp123";
+    const expectedPassword = process.env.APP_PASSWORD;
 
-    if (password === expectedPassword) {
+    if (!expectedPassword) {
+      console.warn("Warning: APP_PASSWORD environment variable is not defined.");
+    }
+
+    if (expectedPassword && password === expectedPassword) {
       return res.json({ success: true, message: "Authenticated successfully" });
     } else {
       return res.status(401).json({ success: false, message: "Invalid password" });

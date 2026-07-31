@@ -173,13 +173,53 @@ export function computePipelineMetrics(deals: Deal[]): PipelineMetrics {
   };
 }
 
+export function calculateRepQuotaStatus(
+  wonConverted: number,
+  expectedConverted: number,
+  monthlyTargetConverted: number
+): 'Over Quota' | 'On Track' | 'At Risk' | 'Underperforming' {
+  if (monthlyTargetConverted <= 0) return 'Over Quota';
+  const wonPercent = Math.round((wonConverted / monthlyTargetConverted) * 100);
+  const totalPercent = Math.round(((wonConverted + expectedConverted) / monthlyTargetConverted) * 100);
+
+  if (wonConverted >= monthlyTargetConverted) {
+    return 'Over Quota';
+  } else if (wonPercent >= 75 || totalPercent >= 85) {
+    return 'On Track';
+  } else if (wonPercent >= 50 || totalPercent >= 60) {
+    return 'At Risk';
+  } else {
+    return 'Underperforming';
+  }
+}
+
 export function computeRepPerformance(
   deals: Deal[],
   targets: SalesRepTarget[] = DEFAULT_REP_TARGETS,
   fxConfig: FxConfig = DEFAULT_FX_CONFIG,
-  reportingCurrency = 'AUD'
+  reportingCurrency = 'AUD',
+  selectedMonth?: string,
+  dateField: 'expectedCloseDate' | 'dateCreated' | 'lastActivityDate' = 'expectedCloseDate'
 ): RepPerformance[] {
-  // First, map target by rep name (case-insensitive trim match)
+  // Determine effective target month
+  const availableMonths = extractAvailableMonths(deals, dateField);
+  let effectiveMonth = selectedMonth;
+
+  if (!effectiveMonth || effectiveMonth === 'ALL') {
+    if (availableMonths.length > 0) {
+      effectiveMonth = availableMonths[availableMonths.length - 1].monthKey;
+    } else {
+      effectiveMonth = new Date().toISOString().substring(0, 7);
+    }
+  }
+
+  // Filter deals strictly to effectiveMonth
+  const monthlyDeals = deals.filter((d) => {
+    const val = d[dateField];
+    return val && val.startsWith(effectiveMonth!);
+  });
+
+  // Map target by rep name
   const targetMap: Record<string, SalesRepTarget> = {};
   targets.forEach((t) => {
     targetMap[t.repName.trim().toLowerCase()] = t;
@@ -200,10 +240,9 @@ export function computeRepPerformance(
     }
   > = {};
 
-  // Ensure all configured targets show up in rep performance even if they have 0 deals in dataset
   targets.forEach((t) => {
-    repStatsMap[t.repName] = {
-      repName: t.repName,
+    repStatsMap[t.repName.trim()] = {
+      repName: t.repName.trim(),
       totalWonValue: 0,
       wonDealsCount: 0,
       expectedThisMonthValue: 0,
@@ -215,12 +254,8 @@ export function computeRepPerformance(
     };
   });
 
-  const availableMonthsCount = extractAvailableMonths(deals).length || 1;
-
-  deals.forEach((deal) => {
+  monthlyDeals.forEach((deal) => {
     const rep = deal.salesRep ? deal.salesRep.trim() : 'Unassigned';
-
-    // Exclude Unassigned deals from individual rep performance quotas (surfaced separately in widget)
     if (rep.toLowerCase() === 'unassigned') {
       return;
     }
@@ -240,7 +275,6 @@ export function computeRepPerformance(
     }
 
     const item = repStatsMap[rep];
-    // Exclude negative deal values from dollar sums
     const safeValue = Math.max(0, deal.dealValue);
     const convertedVal = convertCurrency(safeValue, deal.currency, reportingCurrency, fxConfig);
 
@@ -270,8 +304,9 @@ export function computeRepPerformance(
         targetCurrency: reportingCurrency,
       };
 
-      const targetLocal = targetObj.monthlyTarget * availableMonthsCount;
-      const targetCurrency = targetObj.targetCurrency || 'AUD';
+      // Single month target!
+      const targetLocal = targetObj.monthlyTarget;
+      const targetCurrency = targetObj.targetCurrency || reportingCurrency;
 
       const targetConverted = convertCurrency(
         targetLocal,
@@ -294,16 +329,11 @@ export function computeRepPerformance(
       const variance = totalPerformanceConverted - targetConverted;
       const gapToTargetConverted = Math.max(0, targetConverted - item.wonConverted);
 
-      let status: 'Over Quota' | 'On Track' | 'At Risk' | 'Underperforming' = 'Underperforming';
-      if (variance >= 0) {
-        status = 'Over Quota';
-      } else if (pipelineProgressPercent >= 85) {
-        status = 'On Track';
-      } else if (pipelineProgressPercent >= 60) {
-        status = 'At Risk';
-      } else {
-        status = 'Underperforming';
-      }
+      const status = calculateRepQuotaStatus(
+        item.wonConverted,
+        item.expectedConverted,
+        targetConverted
+      );
 
       return {
         repName: item.repName,
@@ -325,6 +355,7 @@ export function computeRepPerformance(
         variance,
         gapToTargetConverted,
         status,
+        monthKey: effectiveMonth,
       };
     })
     .sort((a, b) => b.wonConverted - a.wonConverted);
@@ -471,14 +502,11 @@ export function computeMonthlyRepMatrix(
       const attainmentPercent =
         monthlyTargetConverted > 0 ? Math.round((monthWonConverted / monthlyTargetConverted) * 100) : 0;
 
-      let status: 'Over Quota' | 'On Track' | 'At Risk' | 'Underperforming' = 'Underperforming';
-      if (monthWonConverted >= monthlyTargetConverted) {
-        status = 'Over Quota';
-      } else if (attainmentPercent >= 75) {
-        status = 'On Track';
-      } else if (attainmentPercent >= 50) {
-        status = 'At Risk';
-      }
+      const status = calculateRepQuotaStatus(
+        monthWonConverted,
+        monthExpectedConverted,
+        monthlyTargetConverted
+      );
 
       return {
         monthKey: m.monthKey,
